@@ -9,34 +9,34 @@ st.set_page_config(page_title="AI Script + Voiceover Generator", page_icon="🎙
 st.markdown("""
 <style>
     .stApp {
-        background: #0a0a0a;
-        color: #f0f0f0;
+        background: #f8f9fa;
     }
     .main-title {
         text-align: center;
         font-size: 2.5rem;
         font-weight: 800;
-        color: #ffffff;
+        color: #1a1a2e;
         margin-bottom: 0;
     }
     .subtitle {
         text-align: center;
-        color: #888;
+        color: #666;
         font-size: 1.1rem;
         margin-bottom: 2rem;
     }
     .script-box {
-        background: #161616;
-        border: 1px solid #2a2a2a;
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
         border-radius: 12px;
         padding: 1.5rem;
         margin: 1rem 0;
         line-height: 1.8;
-        color: #e0e0e0;
+        color: #333;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .word-badge {
-        background: #22c55e;
-        color: #000;
+        background: #4361ee;
+        color: #fff;
         padding: 4px 14px;
         border-radius: 20px;
         font-size: 0.85rem;
@@ -45,8 +45,8 @@ st.markdown("""
         margin-bottom: 1rem;
     }
     .stButton > button {
-        background: #ffffff;
-        color: #000000;
+        background: #4361ee;
+        color: #ffffff;
         border: none;
         border-radius: 8px;
         padding: 0.6rem 2rem;
@@ -55,25 +55,25 @@ st.markdown("""
         width: 100%;
     }
     .stButton > button:hover {
-        background: #e0e0e0;
-        color: #000000;
+        background: #3a56d4;
+        color: #ffffff;
     }
     .stDownloadButton > button {
-        background: #1a1a1a;
-        color: #fff;
-        border: 1px solid #333;
+        background: #ffffff;
+        color: #4361ee;
+        border: 1px solid #4361ee;
         border-radius: 8px;
     }
     .stTextInput > div > div > input {
-        background: #161616;
-        color: white;
-        border: 1px solid #333;
+        background: #ffffff;
+        color: #333;
+        border: 1px solid #ddd;
         border-radius: 8px;
         font-size: 1.1rem;
     }
     .footer {
         text-align: center;
-        color: #444;
+        color: #aaa;
         margin-top: 3rem;
         font-size: 0.85rem;
     }
