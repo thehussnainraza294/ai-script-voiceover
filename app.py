@@ -4,9 +4,83 @@ import edge_tts
 import asyncio
 import time
 
-st.set_page_config(page_title="AI Script + Voiceover Generator", page_icon="🎙️")
-st.title("🎙️ AI Script + Voiceover Generator")
-st.write("Enter a topic and get a 60-second narration script with voiceover!")
+st.set_page_config(page_title="AI Script + Voiceover Generator", page_icon="🎙️", layout="centered")
+
+st.markdown("""
+<style>
+    .stApp {
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: white;
+    }
+    .main-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0;
+    }
+    .subtitle {
+        text-align: center;
+        color: #a0a0b0;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    .script-box {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        line-height: 1.8;
+    }
+    .word-badge {
+        background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+    .stButton > button {
+        background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.6rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        width: 100%;
+    }
+    .stButton > button:hover {
+        background: linear-gradient(90deg, #a29bfe, #6c5ce7);
+    }
+    .stDownloadButton > button {
+        background: rgba(255,255,255,0.1);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+    }
+    .stTextInput > div > div > input {
+        background: rgba(255,255,255,0.08);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        font-size: 1.1rem;
+    }
+    .footer {
+        text-align: center;
+        color: #555;
+        margin-top: 3rem;
+        font-size: 0.85rem;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown('<p class="main-title">🎙️ AI Script + Voiceover Generator</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Enter a topic and get a 60-second narration script with professional voiceover</p>', unsafe_allow_html=True)
 
 api_key = st.secrets["GEMINI_API_KEY"]
 client = genai.Client(api_key=api_key)
@@ -18,9 +92,9 @@ if "audio_bytes" not in st.session_state:
 if "word_count" not in st.session_state:
     st.session_state.word_count = 0
 
-topic = st.text_input("Enter topic:")
+topic = st.text_input("", placeholder="e.g. Why sleep is the secret weapon of successful people")
 
-if st.button("Generate") and topic:
+if st.button("🚀 Generate Script + Voiceover") and topic:
     prompt = f"""Write a 60-second narration script about: {topic}
 
 Rules:
@@ -32,7 +106,7 @@ Rules:
 
     models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.0-flash-lite"]
 
-    with st.spinner("Generating script..."):
+    with st.spinner("✨ Crafting your script..."):
         for model in models:
             try:
                 response = client.models.generate_content(
@@ -47,7 +121,7 @@ Rules:
                 continue
 
     if st.session_state.script:
-        with st.spinner("Generating voiceover..."):
+        with st.spinner("🎧 Generating voiceover..."):
             async def generate_voice():
                 communicate = edge_tts.Communicate(st.session_state.script, "en-US-ChristopherNeural")
                 await communicate.save("voiceover.mp3")
@@ -59,10 +133,12 @@ Rules:
         st.error("All models are busy. Please try again in a minute.")
 
 if st.session_state.script:
-    st.subheader(f"Script ({st.session_state.word_count} words)")
-    st.write(st.session_state.script)
-    st.download_button("Download Script", st.session_state.script, "script.txt")
+    st.markdown(f'<span class="word-badge">📝 {st.session_state.word_count} words</span>', unsafe_allow_html=True)
+    st.markdown(f'<div class="script-box">{st.session_state.script}</div>', unsafe_allow_html=True)
+    st.download_button("📄 Download Script", st.session_state.script, "script.txt")
 
 if st.session_state.audio_bytes:
     st.audio(st.session_state.audio_bytes, format="audio/mp3")
-    st.download_button("Download Voiceover", st.session_state.audio_bytes, "voiceover.mp3")
+    st.download_button("🎵 Download Voiceover", st.session_state.audio_bytes, "voiceover.mp3")
+
+st.markdown('<p class="footer">Built with Gemini AI + Edge-TTS</p>', unsafe_allow_html=True)
