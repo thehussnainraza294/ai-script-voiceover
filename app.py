@@ -9,34 +9,34 @@ st.set_page_config(page_title="AI Script + Voiceover Generator", page_icon="🎙
 st.markdown("""
 <style>
     .stApp {
-        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-        color: white;
+        background: #0a0a0a;
+        color: #f0f0f0;
     }
     .main-title {
         text-align: center;
         font-size: 2.5rem;
         font-weight: 800;
-        background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #ffffff;
         margin-bottom: 0;
     }
     .subtitle {
         text-align: center;
-        color: #a0a0b0;
+        color: #888;
         font-size: 1.1rem;
         margin-bottom: 2rem;
     }
     .script-box {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
+        background: #161616;
+        border: 1px solid #2a2a2a;
         border-radius: 12px;
         padding: 1.5rem;
         margin: 1rem 0;
         line-height: 1.8;
+        color: #e0e0e0;
     }
     .word-badge {
-        background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+        background: #22c55e;
+        color: #000;
         padding: 4px 14px;
         border-radius: 20px;
         font-size: 0.85rem;
@@ -45,8 +45,8 @@ st.markdown("""
         margin-bottom: 1rem;
     }
     .stButton > button {
-        background: linear-gradient(90deg, #6c5ce7, #a29bfe);
-        color: white;
+        background: #ffffff;
+        color: #000000;
         border: none;
         border-radius: 8px;
         padding: 0.6rem 2rem;
@@ -55,24 +55,25 @@ st.markdown("""
         width: 100%;
     }
     .stButton > button:hover {
-        background: linear-gradient(90deg, #a29bfe, #6c5ce7);
+        background: #e0e0e0;
+        color: #000000;
     }
     .stDownloadButton > button {
-        background: rgba(255,255,255,0.1);
-        color: white;
-        border: 1px solid rgba(255,255,255,0.2);
+        background: #1a1a1a;
+        color: #fff;
+        border: 1px solid #333;
         border-radius: 8px;
     }
     .stTextInput > div > div > input {
-        background: rgba(255,255,255,0.08);
+        background: #161616;
         color: white;
-        border: 1px solid rgba(255,255,255,0.2);
+        border: 1px solid #333;
         border-radius: 8px;
         font-size: 1.1rem;
     }
     .footer {
         text-align: center;
-        color: #555;
+        color: #444;
         margin-top: 3rem;
         font-size: 0.85rem;
     }
